@@ -5334,7 +5334,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": true,
+          "folded": false,
           "name": "Enemies",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -5436,7 +5436,7 @@
                         "EnemyA",
                         "Random",
                         "=",
-                        "RandomFloatInRange(1, 10)"
+                        "RandomInRange(1, 9)"
                       ],
                       "subInstructions": []
                     }
