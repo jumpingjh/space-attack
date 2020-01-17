@@ -2718,8 +2718,8 @@
           "locked": false,
           "name": "GameOver",
           "width": 0,
-          "x": 416,
-          "y": 256,
+          "x": 320,
+          "y": 96,
           "zOrder": 106,
           "numberProperties": [],
           "stringProperties": [],
@@ -3895,7 +3895,7 @@
           "underlined": false,
           "variables": [],
           "behaviors": [],
-          "string": "G A M E   O V E R",
+          "string": "   Space Attack\n\nG A M E   O V E R\n\n\n\nBy JJ",
           "font": "8bit16.ttf",
           "characterSize": 80,
           "color": {
@@ -5374,7 +5374,7 @@
                         "",
                         "EnemyA",
                         "RandomFloatInRange(10, 1300)",
-                        "-20",
+                        "-30",
                         ""
                       ],
                       "subInstructions": []
@@ -5717,7 +5717,7 @@
                   "parameters": [
                     "enemySpeed",
                     "+",
-                    "10"
+                    "15"
                   ],
                   "subInstructions": []
                 }
@@ -5915,9 +5915,77 @@
                         "1"
                       ],
                       "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Opacity"
+                      },
+                      "parameters": [
+                        "BackRed",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PauseTimer"
+                      },
+                      "parameters": [
+                        "",
+                        "\"enemyTimes\""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ChangeScaleWidth"
+                      },
+                      "parameters": [
+                        "ProgressBarRed",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
                     }
                   ],
-                  "events": []
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "AjoutObjConcern"
+                          },
+                          "parameters": [
+                            "",
+                            "EnemyA"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Delete"
+                          },
+                          "parameters": [
+                            "EnemyA",
+                            ""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
                 }
               ]
             },
@@ -5996,7 +6064,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": true,
+          "folded": false,
           "name": "GameOver",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -6039,17 +6107,6 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "SourisBouton"
-                  },
-                  "parameters": [
-                    "",
-                    "Left"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
                     "value": "VarScene"
                   },
                   "parameters": [
@@ -6058,6 +6115,37 @@
                     "1"
                   ],
                   "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Or"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SourisBouton"
+                      },
+                      "parameters": [
+                        "",
+                        "Left"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "KeyPressed"
+                      },
+                      "parameters": [
+                        "",
+                        "Space"
+                      ],
+                      "subInstructions": []
+                    }
+                  ]
                 }
               ],
               "actions": [
@@ -6134,18 +6222,6 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "Opacity"
-                  },
-                  "parameters": [
-                    "BackRed",
-                    "=",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
                     "value": "ResetTimer"
                   },
                   "parameters": [
@@ -6209,6 +6285,51 @@
                   "parameters": [
                     "",
                     "1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Cache"
+                  },
+                  "parameters": [
+                    "GameOver"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "Points",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "UnPauseTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"enemyTimes\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Points",
+                    "=",
+                    "VariableString(Points)"
                   ],
                   "subInstructions": []
                 }
